@@ -468,6 +468,31 @@ module.exports = styleTagTransform;
 
 /***/ }),
 
+/***/ "./src/pageContent/footer.js":
+/*!***********************************!*\
+  !*** ./src/pageContent/footer.js ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "createFooter": () => (/* binding */ createFooter)
+/* harmony export */ });
+function createFooter() {
+	const footer = document.createElement('footer');
+	footer.id = 'footer';
+
+	const p = document.createElement('p');
+	p.innerHTML = `&copy 2023 Delicious Restaurant. All rights reserved.`;
+
+	footer.appendChild(p);
+
+	return footer;
+}
+
+
+/***/ }),
+
 /***/ "./src/pageContent/header.js":
 /*!***********************************!*\
   !*** ./src/pageContent/header.js ***!
@@ -479,6 +504,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "createHeader": () => (/* binding */ createHeader)
 /* harmony export */ });
 /* harmony import */ var _assets_restaurant_png__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../assets/restaurant.png */ "./src/assets/restaurant.png");
+/* harmony import */ var _tabs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./tabs */ "./src/pageContent/tabs.js");
+
 
 function createHeader() {
 	const header = document.createElement('header');
@@ -487,12 +514,77 @@ function createHeader() {
 	const logoPNG = document.createElement('img');
 	logoPNG.src = _assets_restaurant_png__WEBPACK_IMPORTED_MODULE_0__;
 
+	const tabs = (0,_tabs__WEBPACK_IMPORTED_MODULE_1__.tabsBTN)();
+
 	const headline = document.createElement('h1');
 	headline.innerHTML = 'Welcome to our restaurant!';
 	header.appendChild(logoPNG);
 	header.appendChild(headline);
+	header.appendChild(tabs);
 
 	return header;
+}
+
+
+/***/ }),
+
+/***/ "./src/pageContent/mainContent.js":
+/*!****************************************!*\
+  !*** ./src/pageContent/mainContent.js ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "mainContent": () => (/* binding */ mainContent)
+/* harmony export */ });
+/* harmony import */ var _tabs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./tabs */ "./src/pageContent/tabs.js");
+
+function mainContent() {
+	const main = document.createElement('main');
+	const paragraph1 = document.createElement('p');
+	const paragraph2 = document.createElement('p');
+
+	paragraph1.innerHTML =
+		'We are a family-owned restaurant that has been serving our community for over 20 years. Our menu features delicious and locally sourced ingredients, cooked to perfection by our expert chefs.';
+	paragraph2.innerHTML = `Whether you're in the mood for a hearty breakfast, a quick lunch, or a romantic dinner for two, we have something for everyone. Our attentive and friendly staff will make sure you have an unforgettable dining experience,`;
+
+	main.appendChild(paragraph1);
+	main.appendChild(paragraph2);
+
+	return main;
+}
+
+
+/***/ }),
+
+/***/ "./src/pageContent/tabs.js":
+/*!*********************************!*\
+  !*** ./src/pageContent/tabs.js ***!
+  \*********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "tabsBTN": () => (/* binding */ tabsBTN)
+/* harmony export */ });
+function tabsBTN() {
+	const container = document.createElement('div');
+	container.className = 'buttons';
+	const contactBTN = document.createElement('button');
+	const menuBTN = document.createElement('button');
+	const homeBTN = document.createElement('button');
+
+	contactBTN.innerHTML = 'Contact';
+	contactBTN.id = 'contact-page';
+	menuBTN.innerHTML = 'Menu';
+	menuBTN.id = 'menu-page';
+	homeBTN.innerHTML = 'Home';
+	homeBTN.id = 'home-page';
+	container.appendChild(contactBTN);
+	container.appendChild(homeBTN);
+	container.appendChild(menuBTN);
+	return container;
 }
 
 
@@ -622,6 +714,10 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _styles_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./styles.css */ "./src/styles.css");
 /* harmony import */ var _pageContent_header_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./pageContent/header.js */ "./src/pageContent/header.js");
+/* harmony import */ var _pageContent_mainContent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./pageContent/mainContent */ "./src/pageContent/mainContent.js");
+/* harmony import */ var _pageContent_footer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./pageContent/footer */ "./src/pageContent/footer.js");
+
+
 
 
 
@@ -629,7 +725,13 @@ const pageContent = document.getElementById('content');
 
 const header = (0,_pageContent_header_js__WEBPACK_IMPORTED_MODULE_1__.createHeader)();
 
+const main = (0,_pageContent_mainContent__WEBPACK_IMPORTED_MODULE_2__.mainContent)();
+
+const footer = (0,_pageContent_footer__WEBPACK_IMPORTED_MODULE_3__.createFooter)();
+
 pageContent.appendChild(header);
+pageContent.appendChild(main);
+pageContent.appendChild(footer);
 
 })();
 
