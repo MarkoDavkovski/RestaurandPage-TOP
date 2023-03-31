@@ -1,4 +1,3 @@
-import { tabsBTN } from './tabs';
 export function mainContent() {
 	const main = document.createElement('main');
 	const paragraph1 = document.createElement('p');
