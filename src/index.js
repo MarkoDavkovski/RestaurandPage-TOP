@@ -1,30 +1,68 @@
-import './styles/home.css';
+//Styles
 import './styles/contact.css';
 import './styles/menu.css';
-import { createHeader } from './pageContent/header.js';
+import './styles/home.css';
+
+//Page Content
+import { createHeader } from './pageContent/header';
 import { mainContent } from './pageContent/main-content';
 import { createFooter } from './pageContent/footer';
 import { contactPage } from './pageContent/contact-page';
 import { menuPage } from './pageContent/menu-page';
 
-const homeButton = document.getElementById('home-button');
-const contactButton = document.getElementById('contact-button');
-const menuButton = document.getElementById('menu-button');
+//functions
+import { firstLoad } from './functions/firstLoad';
+import { render } from './functions/render';
+import { pageLoad } from './functions/pageLoad';
 
-// firstLoad();
+firstLoad();
 
-const pageContent = document.getElementById('content');
-
-const header = createHeader();
-
-const main = mainContent();
-
+const content = mainContent();
 const contact = contactPage();
-
 const menu = menuPage();
 
+const header = createHeader();
 const footer = createFooter();
 
-pageContent.appendChild(header);
-pageContent.appendChild(menu);
-pageContent.appendChild(footer);
+const buttons = document.querySelectorAll('.btn');
+
+//EventListener function for buttons
+function addEventListenersToButtons() {
+	const homeButton = document.querySelector('#home-button');
+	const contactButton = document.querySelector('#contact-button');
+	const menuButton = document.querySelector('#menu-button');
+
+	homeButton.addEventListener('click', () => {
+		render();
+		pageLoad(header, content, footer);
+	});
+
+	contactButton.addEventListener('click', () => {
+		render();
+		pageLoad(header, contact, footer);
+	});
+
+	menuButton.addEventListener('click', () => {
+		render();
+		pageLoad(header, menu, footer);
+	});
+}
+
+// Add click event listeners to all buttons
+buttons.forEach((button) => {
+	button.addEventListener('click', () => {
+		render();
+
+		// Check which button was clicked and render the appropriate page
+		if (button.id === 'home-button') {
+			pageLoad(header, content, footer);
+		} else if (button.id === 'contact-button') {
+			pageLoad(header, contact, footer);
+		} else if (button.id === 'menu-button') {
+			pageLoad(header, menu, footer);
+		}
+
+		// Add event listeners to buttons after rendering the page
+		addEventListenersToButtons();
+	});
+});
